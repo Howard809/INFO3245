@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Project</string>
+    <string name="email">Email:</string>
+    <string name="welcome_to_testvitals_lab">Welcome to testvitals lab</string>
+    <string name="ready_to_take_charge_of_your_health">Ready to take charge of your health</string>
+    <string name="find_nearby_labs_book_appointments_with_ease_and_view_your_blood_test_results_as_soon_as_they_re_available">Find nearby labs book appointments with ease and view your blood test results as soon as they re available</string>
+    <string name="start_by_creating_anaccount_or_sign_in_if_you_re_already_a_patient">Start by creating anaccount or sign in if you\'re already a patient</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="creat_account">Creat Account</string>
+    <string name="please_provide_your_information">Please provide your information:</string>
+    <string name="name">Name</string>
+    <string name="email2">Email</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="password">Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="email1">Email</string>
+    <string name="password1">Password</string>
+    <string name="sign_in1">Sign In</string>
+    <string name="sign_in2">Sign In</string>
+</resources>
