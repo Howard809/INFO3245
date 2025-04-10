@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Booking1">
+
+    <TextView
+        android:id="@+id/txttitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Select a date and time"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btnPickDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick Date" />
+
+        <Button
+            android:id="@+id/btnPickTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick Time" />
+
+        <TextView
+            android:id="@+id/txtDateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No date and time selected yet"
+            android:textSize="20dp"
+            android:paddingTop="16dp"/>
+
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continue" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtservice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select service(s):"
+        android:textSize="20dp"
+        android:paddingTop="16dp"
+        android:layout_marginTop="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="330dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="14dp"
+        android:gravity="center_horizontal">
+
+        <CheckBox
+            android:id="@+id/chB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blood Test"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true" />
+
+        <CheckBox
+            android:id="@+id/chU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Urine Test"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true" />
+
+        <CheckBox
+            android:id="@+id/chE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ECG"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtbloodtests"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select test(s):"
+        android:textSize="20dp"
+        android:paddingTop="16dp"
+        android:layout_marginTop="400dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/bloodtests"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="430dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="14dp"
+        android:gravity="center_horizontal">
+
+        <CheckBox
+            android:id="@+id/chIn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vitamin D"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true" />
+
+        <CheckBox
+            android:id="@+id/chIn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Measles"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true" />
+
+        <CheckBox
+            android:id="@+id/chIn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cotinine"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="530dp"
+        android:text="Confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
