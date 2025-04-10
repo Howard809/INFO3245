@@ -1,4 +1,4 @@
-//INFO 3245 - Course Project
+//INFO 3245 - Course Project MainMenuActivity.java
 //Blood Test Booking App with Firebase and Recycler View
 //Asmaa Almasri - 100350706
 //Howard Chen - 100382934
