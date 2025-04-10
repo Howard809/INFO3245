@@ -12,10 +12,28 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Project"
+        android:theme="@style/Theme.CourseProject"
         tools:targetApi="31">
         <activity
+            android:name=".Booking1"
+            android:exported="false" />
+        <activity
+            android:name=".Booking"
+            android:exported="false" />
+        <activity
+            android:name=".CalendarPick"
+            android:exported="false" />
+        <activity
             android:name=".ChooseTest"
+            android:exported="false" />
+        <activity
+            android:name=".Confirmation"
+            android:exported="false" />
+        <activity
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
+            android:name=".Results"
             android:exported="false" />
         <activity
             android:name=".SignUp"
@@ -23,6 +41,9 @@
         <activity
             android:name=".SignIn"
             android:exported="false" />
+        <activity
+            android:name=".MainMenuActivity"
+            android:exported="true">
         <activity
             android:name=".MainActivity"
             android:exported="true">
