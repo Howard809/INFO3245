@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".Booking1">
 
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="4dp"
+        android:alpha="0.1"
+        android:scaleType="centerCrop"
+        android:src="@drawable/backgroundimage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="-5dp" />
+
     <TextView
         android:id="@+id/txttitle"
         android:layout_width="wrap_content"
