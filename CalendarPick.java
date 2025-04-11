@@ -1,4 +1,4 @@
-package com.example.courseproject;
+package com.example.newproject;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
