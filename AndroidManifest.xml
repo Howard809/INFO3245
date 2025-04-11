@@ -30,6 +30,9 @@
             android:name=".Confirmation"
             android:exported="false" />
         <activity
+            android:name=".LogOutActivity"
+            android:exported="false" />
+        <activity
             android:name=".Profile"
             android:exported="false" />
         <activity
