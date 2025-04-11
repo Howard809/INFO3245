@@ -60,7 +60,7 @@ public class Booking extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
 
         View.OnClickListener locationClickListener = view -> {
-            final String[] location = {""};  // Use array for lambda final requirement
+            final String[] location = {""}; 
 
             int viewId = view.getId();
             if (viewId == R.id.imgrmd) location[0] = "Richmond";
