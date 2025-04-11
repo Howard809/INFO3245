@@ -1,12 +1,8 @@
-//INFO 3245 - Course Project Results.java
-//Blood Test Booking App with Firebase and Recycler View
-//Asmaa Almasri - 100350706
-//Howard Chen - 100382934
+package com.example.newproject;
 
-package com.example.courseproject;
 
-import android.os.Bundle;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -32,6 +28,7 @@ public class Results extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_results);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -49,8 +46,7 @@ public class Results extends AppCompatActivity {
 
         String selectDate = getIntent().getStringExtra("datetime");
 
-        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-        firestore.collection("bookings")
+        FirebaseFirestore.getInstance().collection("bookings")
                 .whereEqualTo("datetime", selectDate)
                 .get()
                 .addOnCompleteListener(task -> {
@@ -61,15 +57,17 @@ public class Results extends AppCompatActivity {
                                 String patient = document.getString("patient");
                                 String location = document.getString("location");
                                 String date = document.getString("datetime");
-                                String service = document.getString("services");
-                                String bloodtests = document.getString("tests");
+
+                                // Convert map to string properly
+                                Object serviceObj = document.get("services");
+                                Object bloodTestsObj = document.get("tests");
 
                                 txtTitle.setText("Results for " + date);
                                 txtName.setText(patient);
                                 txtLName.setText(location);
                                 txtDate.setText(date);
-                                txtServ.setText(service);
-                                txtBtests.setText(bloodtests);
+                                txtServ.setText(serviceObj != null ? serviceObj.toString() : "No services");
+                                txtBtests.setText(bloodTestsObj != null ? bloodTestsObj.toString() : "No tests");
                             }
                         } else {
                             Toast.makeText(Results.this, "No results found for this date", Toast.LENGTH_SHORT).show();
@@ -79,20 +77,8 @@ public class Results extends AppCompatActivity {
                     }
                 });
 
-        btnS1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Results.this, CalendarPick.class);
-                startActivity(intent);
-            }
-        });
+        btnS1.setOnClickListener(view -> startActivity(new Intent(Results.this, CalendarPick.class)));
 
-        btnS2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Results.this, MainMenuActivity.class);
-                startActivity(intent);
-            }
-        });
+        btnS2.setOnClickListener(view -> startActivity(new Intent(Results.this, MainMenuActivity.class)));
     }
 }

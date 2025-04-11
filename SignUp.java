@@ -1,9 +1,4 @@
-//INFO 3245 - Course Project SignUp.java
-//Blood Test Booking App with Firebase and Recycler View
-//Asmaa Almasri - 100350706
-//Howard Chen - 100382934
-
-package com.example.courseproject;
+package com.example.newproject;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -52,7 +47,7 @@ public class SignUp extends AppCompatActivity {
         edtPhone    = findViewById(R.id.edtPhone);
         edtDate     = findViewById(R.id.edtDate);
         edtPassword = findViewById(R.id.edtPassword);
-        btnCreate   = findViewById(R.id.btnCeate);
+        btnCreate   = findViewById(R.id.btnCreate);
         progressBar = findViewById(R.id.progressBar);
 
         btnCreate.setOnClickListener(v -> {

@@ -1,13 +1,7 @@
-//INFO 3245 - Course Project Profile.java
-//Blood Test Booking App with Firebase and Recycler View
-//Asmaa Almasri - 100350706
-//Howard Chen - 100382934
+package com.example.newproject;
 
-package com.example.courseproject;
-
-import android.os.Bundle;
 import android.content.Intent;
-import android.view.View;
+import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -27,6 +21,7 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -40,22 +35,17 @@ public class Profile extends AppCompatActivity {
         txtServ = findViewById(R.id.txtServ);
         btnS2 = findViewById(R.id.btnS2);
 
-        String patient = getIntent().getStringExtra("name");
+        // Get patient data from Intent
+        String name = getIntent().getStringExtra("name");
         String email = getIntent().getStringExtra("email");
-        String date = getIntent().getStringExtra("dob");
+        String dob = getIntent().getStringExtra("dob");
         String phone = getIntent().getStringExtra("phone");
 
-        txtName.setText("" + patient);
-        txtLName.setText("" + email);
-        txtDate.setText("" + date);
-        txtServ.setText("" + phone);
+        txtName.setText("Name: " + name);
+        txtLName.setText("Email: " + email);
+        txtDate.setText("Date of Birth: " + dob);
+        txtServ.setText("Phone: " + phone);
 
-        btnS2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Profile.this, MainMenuActivity.class);
-                startActivity(intent);
-            }
-        });
+        btnS2.setOnClickListener(view -> startActivity(new Intent(Profile.this, MainMenuActivity.class)));
     }
 }

@@ -1,8 +1,4 @@
-//INFO 3245 - Course Project ChooseTest.java
-//Blood Test Booking App with Firebase and Recycler View
-//Asmaa Almasri - 100350706
-//Howard Chen - 100382934
-package com.example.courseproject;
+package com.example.newproject;
 
 import android.os.Bundle;
 
@@ -19,6 +15,7 @@ public class ChooseTest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_choose_test);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

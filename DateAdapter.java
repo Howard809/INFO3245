@@ -1,9 +1,9 @@
+package com.example.newproject;
+
 //INFO 3245 - Course Project DateAdapter.java
 //Blood Test Booking App with Firebase and Recycler View
 //Asmaa Almasri - 100350706
 //Howard Chen - 100382934
-
-package com.example.courseproject;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +26,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.DateViewHolder
 
     @Override
     public DateViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.date_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_date_adapter, parent, false);
         return new DateViewHolder(view);
     }
 

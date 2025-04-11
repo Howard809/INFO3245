@@ -1,17 +1,15 @@
-//INFO 3245 - Course Project Booking1.java
-//Blood Test Booking App with Firebase and Recycler View
-//Asmaa Almasri - 100350706
-//Howard Chen - 100382934
+package com.example.newproject;
 
-package com.example.courseproject;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.*;
-import android.content.Intent;
-import android.widget.Toast;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,15 +22,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class Booking1 extends AppCompatActivity {
 
     TextView txttitle, txtDateTime, txtservice, txtbloodtests;
     Button btnPickDate, btnPickTime, btnContinue, btnConfirm;
     Calendar selectedDateTime;
-    String selectedCity, patientName;
-    String bookingId = null;
+    String selectedCity, patientName, patientEmail, patientPhone, patientDob;
 
     LinearLayout linear, bloodtests;
     CheckBox chB, chU, chE, chIn1, chIn2, chIn3;
@@ -71,8 +67,13 @@ public class Booking1 extends AppCompatActivity {
         chIn3 = findViewById(R.id.chIn3);
 
         selectedDateTime = Calendar.getInstance();
+
+        // Get patient data from Intent
         selectedCity = getIntent().getStringExtra("location");
-        patientName = getIntent().getStringExtra("patientName");
+        patientName = getIntent().getStringExtra("name");
+        patientEmail = getIntent().getStringExtra("email");
+        patientPhone = getIntent().getStringExtra("phone");
+        patientDob = getIntent().getStringExtra("dob");
 
         txtservice.setVisibility(View.INVISIBLE);
         txtbloodtests.setVisibility(View.INVISIBLE);
@@ -101,7 +102,6 @@ public class Booking1 extends AppCompatActivity {
                 selectedDateTime.set(Calendar.MINUTE, m);
                 updateLabel();
             }, hour, minute, true).show();
-
         });
 
         btnContinue.setOnClickListener(view -> {
@@ -110,7 +110,6 @@ public class Booking1 extends AppCompatActivity {
             Toast.makeText(this, "Please select services", Toast.LENGTH_SHORT).show();
             txtDateTime.setVisibility(View.INVISIBLE);
         });
-
 
         chB.setOnClickListener(view -> {
             txtbloodtests.setVisibility(View.VISIBLE);
@@ -123,7 +122,7 @@ public class Booking1 extends AppCompatActivity {
             Map<String, Object> data = new HashMap<>();
             data.put("location", selectedCity);
             data.put("datetime", dateTime);
-            data.put("patient", patientName);
+            data.put("patient", patientName != null ? patientName : "Unknown");
 
             Map<String, Object> services = new HashMap<>();
             if (chB.isChecked()) services.put("Blood Test", true);
@@ -144,19 +143,25 @@ public class Booking1 extends AppCompatActivity {
                         intent.putExtra("name", patientName);
                         intent.putExtra("location", selectedCity);
                         intent.putExtra("datetime", dateTime);
-                        intent.putExtra("services", services.toString());
-                        intent.putExtra("tests", tests.toString());
+                        intent.putExtra("services", formatSelection(services));
+                        intent.putExtra("tests", formatSelection(tests));
                         startActivity(intent);
                     })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(this, "Error saving booking", Toast.LENGTH_SHORT).show();
-                    });
+                    .addOnFailureListener(e -> Toast.makeText(this, "Error saving booking", Toast.LENGTH_SHORT).show());
         });
-
     }
 
     private void updateLabel() {
         String dateTime = android.text.format.DateFormat.format("yyyy-MM-dd HH:mm", selectedDateTime).toString();
         txtDateTime.setText("Selected: " + dateTime);
+    }
+
+    private String formatSelection(Map<String, Object> map) {
+        if (map.isEmpty()) return "None";
+        StringBuilder builder = new StringBuilder();
+        for (String key : map.keySet()) {
+            builder.append("• ").append(key).append("\n");
+        }
+        return builder.toString().trim();
     }
 }

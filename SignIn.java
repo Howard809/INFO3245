@@ -1,9 +1,4 @@
-//INFO 3245 - Course Project SignIn.java
-//Blood Test Booking App with Firebase and Recycler View
-//Asmaa Almasri - 100350706
-//Howard Chen - 100382934
-
-package com.example.courseproject;
+package com.example.newproject;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,17 +9,14 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SignIn extends AppCompatActivity {
 
@@ -39,7 +31,7 @@ public class SignIn extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sign_in);
 
-        mAuth = FirebaseAuth.getInstance(); // make sure mAuth is initialized
+        mAuth = FirebaseAuth.getInstance();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -70,9 +62,35 @@ public class SignIn extends AppCompatActivity {
                         btnSignIn.setEnabled(true);
 
                         if (task.isSuccessful()) {
-                            Toast.makeText(SignIn.this, "Sign in successful!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(SignIn.this, MainMenuActivity.class));
-                            finish();
+                            FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                            if (firebaseUser != null) {
+                                String uid = firebaseUser.getUid();
+
+                                FirebaseFirestore.getInstance().collection("patients")
+                                        .document(uid)
+                                        .get()
+                                        .addOnSuccessListener(documentSnapshot -> {
+                                            if (documentSnapshot.exists()) {
+                                                String name = documentSnapshot.getString("name");
+                                                String emailFetched = documentSnapshot.getString("email");
+                                                String dob = documentSnapshot.getString("dob");
+                                                String phone = documentSnapshot.getString("phone");
+
+                                                Intent intent = new Intent(SignIn.this, MainMenuActivity.class);
+                                                intent.putExtra("name", name);
+                                                intent.putExtra("email", emailFetched);
+                                                intent.putExtra("dob", dob);
+                                                intent.putExtra("phone", phone);
+                                                startActivity(intent);
+                                                finish();
+                                            } else {
+                                                Toast.makeText(SignIn.this, "User data not found.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Toast.makeText(SignIn.this, "Error fetching user data: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                        });
+                            }
                         } else {
                             Toast.makeText(SignIn.this,
                                     "Authentication failed: " + task.getException().getMessage(),
@@ -81,5 +99,4 @@ public class SignIn extends AppCompatActivity {
                     });
         });
     }
-
 }

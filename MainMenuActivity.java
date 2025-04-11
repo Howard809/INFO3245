@@ -1,13 +1,7 @@
-//INFO 3245 - Course Project MainMenuActivity.java
-//Blood Test Booking App with Firebase and Recycler View
-//Asmaa Almasri - 100350706
-//Howard Chen - 100382934
-
-package com.example.courseproject;
+package com.example.newproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -22,11 +16,14 @@ public class MainMenuActivity extends AppCompatActivity {
     TextView txtRName;
     Button btnbooking, btnresults, btnprofile;
 
+    String patientName, patientEmail, patientPhone, patientDob;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_mainmenu);
+        setContentView(R.layout.activity_main_menu);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -38,32 +35,43 @@ public class MainMenuActivity extends AppCompatActivity {
         btnresults = findViewById(R.id.btnresults);
         btnprofile = findViewById(R.id.btnprofile);
 
-        String patient = getIntent().getStringExtra("name");
-        txtRName.setText("Welcome " + patient);
+        // Safely get patient data from Intent
+        patientName = getIntent().getStringExtra("name");
+        patientEmail = getIntent().getStringExtra("email");
+        patientPhone = getIntent().getStringExtra("phone");
+        patientDob = getIntent().getStringExtra("dob");
 
-        btnbooking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainMenuActivity.this, Booking.class);
-                startActivity(intent);
-            }
+        if (patientName != null && !patientName.isEmpty()) {
+            txtRName.setText("Welcome " + patientName);
+        } else {
+            txtRName.setText("Welcome!");
+        }
+
+        btnbooking.setOnClickListener(view -> {
+            Intent intent = new Intent(MainMenuActivity.this, Booking.class);
+            intent.putExtra("name", patientName);
+            intent.putExtra("email", patientEmail);
+            intent.putExtra("phone", patientPhone);
+            intent.putExtra("dob", patientDob);
+            startActivity(intent);
         });
 
-        btnresults.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainMenuActivity.this, CalendarPick.class);
-                startActivity(intent);
-            }
+        btnresults.setOnClickListener(view -> {
+            Intent intent = new Intent(MainMenuActivity.this, CalendarPick.class);
+            intent.putExtra("name", patientName);
+            intent.putExtra("email", patientEmail);
+            intent.putExtra("phone", patientPhone);
+            intent.putExtra("dob", patientDob);
+            startActivity(intent);
         });
 
-        btnprofile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainMenuActivity.this, Profile.class);
-                startActivity(intent);
-            }
+        btnprofile.setOnClickListener(view -> {
+            Intent intent = new Intent(MainMenuActivity.this, Profile.class);
+            intent.putExtra("name", patientName);
+            intent.putExtra("email", patientEmail);
+            intent.putExtra("phone", patientPhone);
+            intent.putExtra("dob", patientDob);
+            startActivity(intent);
         });
-
     }
 }

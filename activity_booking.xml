@@ -11,102 +11,95 @@
         android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="4dp"
         android:alpha="0.1"
         android:scaleType="centerCrop"
         android:src="@drawable/backgroundimage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="-5dp" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/txttitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
         android:text="Select a location"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="60dp"/>
 
     <ImageView
         android:id="@+id/imgrmd"
         android:layout_width="151dp"
         android:layout_height="114dp"
-        android:layout_marginTop="128dp"
+        android:src="@drawable/richmond"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/richmond"
-        android:onClick="onImageClick"
-        tools:ignore="OnClick" />
+        android:layout_marginTop="128dp" />
 
     <TextView
         android:id="@+id/txtrmd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
         android:text="Richmond"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="240dp"/>
 
     <ImageView
         android:id="@+id/imgdta"
         android:layout_width="151dp"
         android:layout_height="114dp"
-        android:layout_marginTop="288dp"
+        android:src="@drawable/dh_img"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/dh_img"
-        android:onClick="onImageClick"
-        tools:ignore="OnClick" />
+        android:layout_marginTop="288dp" />
 
     <TextView
         android:id="@+id/txtdta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
         android:text="Delta"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="400dp"/>
 
     <ImageView
         android:id="@+id/imgsur"
         android:layout_width="151dp"
         android:layout_height="114dp"
-        android:layout_marginTop="440dp"
+        android:src="@drawable/smh"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/smh"
-        android:onClick="onImageClick"
-        tools:ignore="OnClick" />
+        android:layout_marginTop="440dp" />
 
     <TextView
         android:id="@+id/txtsur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="550dp"
         android:text="Surrey"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="550dp"/>
 
     <Button
         android:id="@+id/btnS2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
+        android:backgroundTint="#DA009688"
         android:text="Return to Menu"
         android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
