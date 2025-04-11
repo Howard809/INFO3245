@@ -71,7 +71,7 @@
         android:layout_height="90dp"
         android:layout_marginTop="16dp"
         android:background="#FFFFFF"
-        android:text="Start by creating anaccount or sign in if you're already a patient"
+        android:text="Start by creating an account or sign in if you're already a patient"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp"
