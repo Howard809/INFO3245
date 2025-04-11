@@ -46,6 +46,26 @@ public class Profile extends AppCompatActivity {
         txtDate.setText("Date of Birth: " + dob);
         txtServ.setText("Phone: " + phone);
 
-        btnS2.setOnClickListener(view -> startActivity(new Intent(Profile.this, MainMenuActivity.class)));
+        if (name != null){
+            txtName.setText("Name: " + name);
+        }
+        if (email != null){
+            txtLName.setText("Email: " + email);
+        }
+        if (dob != null){
+            txtDate.setText("Date of Birth: " + dob);
+        }
+        if (phone != null){
+            txtServ.setText("Phone: " + phone);
+        }
+
+        btnS2.setOnClickListener(view -> {
+            Intent intent = new Intent(Profile.this, MainMenuActivity.class);
+            intent.putExtra("name", getIntent().getStringExtra("name"));
+            intent.putExtra("email", getIntent().getStringExtra("email"));
+            intent.putExtra("phone", getIntent().getStringExtra("phone"));
+            intent.putExtra("dob", getIntent().getStringExtra("dob"));
+            startActivity(intent);
+        });
     }
 }

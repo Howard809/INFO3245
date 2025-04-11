@@ -1,9 +1,11 @@
 package com.example.newproject;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.example.newproject.DateAdapter;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -28,7 +31,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class CalendarPick extends AppCompatActivity {
 
-    TextView txtDateTime;
+    TextView txtDateTime, txtnores;
     Button btnPD, btnPT, btnS1, btnS2;
     Calendar selectDate;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -36,6 +39,7 @@ public class CalendarPick extends AppCompatActivity {
     DateAdapter dateAdapter;
     List<String> availableDates = new ArrayList<>();
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,7 @@ public class CalendarPick extends AppCompatActivity {
         btnS1 = findViewById(R.id.btnS1);
         btnS2 = findViewById(R.id.btnS2);
         txtDateTime = findViewById(R.id.txtDateTime);
+        txtnores = findViewById(R.id.txtnores);
         selectDate = Calendar.getInstance();
         recyclerView = findViewById(R.id.recyclerView);
 
@@ -122,21 +127,33 @@ public class CalendarPick extends AppCompatActivity {
     }
 
     private void fetchBookingDates() {
+        String selectedDate = getIntent().getStringExtra("datetime");
+
+        if (selectedDate == null) {
+            return;
+        }
+
         db.collection("bookings")
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        QuerySnapshot querySnapshot = task.getResult();
-                        if (querySnapshot != null) {
-                            List<DocumentSnapshot> documents = querySnapshot.getDocuments();
-                            for (DocumentSnapshot document : documents) {
-                                String datetime = document.getString("datetime");
-                                availableDates.add(datetime);
+                        List<String> matches = new ArrayList<>();
+
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String datetime = document.getString("datetime");
+
+                            if (datetime != null && datetime.startsWith(selectedDate)) {
+                                matches.add("Service: " + document.getString("service") +
+                                        "\nName: " + document.getString("name") +
+                                        "\nDateTime: " + datetime);
                             }
-                            dateAdapter.notifyDataSetChanged();
                         }
-                    } else {
-                        Toast.makeText(CalendarPick.this, "Error getting documents: " + task.getException(), Toast.LENGTH_SHORT).show();
+
+                        if (matches.isEmpty()) {
+                            txtnores.setVisibility(View.VISIBLE);
+                        } else {
+                            txtnores.setVisibility(View.GONE);
+                        }
                     }
                 });
     }

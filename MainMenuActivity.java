@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainMenuActivity extends AppCompatActivity {
 
     TextView txtRName;
-    Button btnbooking, btnresults, btnprofile;
+    Button btnbooking, btnresults, btnprofile, btnLogout;
 
     String patientName, patientEmail, patientPhone, patientDob;
 
@@ -34,6 +34,7 @@ public class MainMenuActivity extends AppCompatActivity {
         btnbooking = findViewById(R.id.btnbooking);
         btnresults = findViewById(R.id.btnresults);
         btnprofile = findViewById(R.id.btnprofile);
+        btnLogout = findViewById(R.id.btnLogout);
 
         // Safely get patient data from Intent
         patientName = getIntent().getStringExtra("name");
@@ -72,6 +73,13 @@ public class MainMenuActivity extends AppCompatActivity {
             intent.putExtra("phone", patientPhone);
             intent.putExtra("dob", patientDob);
             startActivity(intent);
+        });
+
+        btnLogout.setOnClickListener(view -> {
+            Intent intent = new Intent(MainMenuActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
         });
     }
 }

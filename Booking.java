@@ -1,3 +1,8 @@
+//INFO 3245 - Course Project Booking.java
+//Blood Test Booking Application with Firebase Data Storage
+//Asmaa Almasri - 100350706
+//Howard Chen - 100382934
+
 package com.example.newproject;
 
 import android.content.Intent;
@@ -60,7 +65,7 @@ public class Booking extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
 
         View.OnClickListener locationClickListener = view -> {
-            final String[] location = {""}; 
+            final String[] location = {""};
 
             int viewId = view.getId();
             if (viewId == R.id.imgrmd) location[0] = "Richmond";

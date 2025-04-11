@@ -50,7 +50,7 @@ public class Confirmation extends AppCompatActivity {
         txtServ.setText(service != null ? service : "No services selected");
         txtBtests.setText(bloodtests != null ? bloodtests : "No tests selected");
 
-        // Return to Main Menu
+
         btnMainMenu.setOnClickListener(view -> {
             Intent intent = new Intent(Confirmation.this, MainMenuActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -58,7 +58,6 @@ public class Confirmation extends AppCompatActivity {
             finish();
         });
 
-        // Logout → Go to MainActivity (Sign In / Sign Up screen)
         btnLogout.setOnClickListener(view -> {
             Intent intent = new Intent(Confirmation.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);

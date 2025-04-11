@@ -1,5 +1,5 @@
 //INFO 3245 - Course Project TimePickerDialog.java
-//Blood Test Booking App with Firebase and Recycler View
+//Blood Test Booking Application with Firebase Data Storage
 //Asmaa Almasri - 100350706
 //Howard Chen - 100382934
 
