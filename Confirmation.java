@@ -54,6 +54,10 @@ public class Confirmation extends AppCompatActivity {
         btnMainMenu.setOnClickListener(view -> {
             Intent intent = new Intent(Confirmation.this, MainMenuActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.putExtra("name", getIntent().getStringExtra("name"));
+            intent.putExtra("email", getIntent().getStringExtra("email"));
+            intent.putExtra("phone", getIntent().getStringExtra("phone"));
+            intent.putExtra("dob", getIntent().getStringExtra("dob"));
             startActivity(intent);
             finish();
         });
